@@ -1,0 +1,1 @@
+@extends('emails/layouts/default')@section('content')<p>Hello {!! $employeer->first_name !!} {!! $employeer->last_name !!},</p><p>Your request has been canceled due to reason <strong>{{ $data['reason'] }}</strong></p><p>Best regards,</p><p>{{ env('APP_NAME') }}</p>@stop

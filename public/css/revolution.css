@@ -1,0 +1,66 @@
+/*----revolution-slider---*/
+@import url('../vendor/revolution/settings.css');
+@import url('../vendor/revolution/layers.css');
+@import url('../vendor/revolution/navigation.css');
+
+
+/*-------------------------- Banner ----------------------*/
+
+#business-main-banner .tp-caption h1 {color: #fff;}
+#business-main-banner .tp-caption p {
+  font-size: 18px;
+  color: #fff;
+  line-height: 30px;
+  font-weight: 300;
+}
+#business-main-banner .tp-caption a {
+  width: 250px;
+  line-height: 46px;
+  border: 2px solid #fff;
+  border-radius: 30px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+#business-main-banner .tp-caption a:hover {background: #fff;}
+#business-main-banner .tp-caption a i {margin-right: 10px;}
+#business-main-banner .tp-caption img {max-width: 100% !important;}
+.hesperiden.tparrows {
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border:1px solid #fff;
+  color: #fff;
+}
+.hesperiden.tparrows:before {
+  font-family: 'font-awesome';
+  line-height: 46px;
+  font-size: 14px;
+  color: inherit;
+  border-radius: 100px;  
+}
+.hesperiden.tparrows.tp-leftarrow:before {
+  content: '<';
+  margin: 0;
+  background: rgba(0,0,0,0.3);  
+}
+.hesperiden.tparrows.tp-rightarrow:before {
+  content: '>';
+  margin: 0;
+  background: rgba(0,0,0,0.3);  
+}
+#business-main-banner-two .tp-caption h2 {
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
+  font-size: 48px;
+}
+#business-main-banner-two .tp-caption a {
+  width: 216px;
+  line-height: 53px;
+  border-width: 1px;
+  font-weight: 500;
+  border-style: solid;
+}
+#business-main-banner-two .tp-caption a:hover {background: transparent;}

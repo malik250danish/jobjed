@@ -1,0 +1,1 @@
+@extends('emails/layouts/default')@section('content')<p>Hello {!! $employeer->first_name !!} {!! $employeer->last_name !!},</p><p>Your request has been accepted, admin will be connect you soon.</p><p>Best regards,</p><p>{{ env('APP_NAME') }}</p>@stop
