@@ -1,3 +1,18 @@
+<style>
+    .radioDiv{
+        display: flex;
+
+    }
+    .saveBtn{
+        width: 100% !important;
+        outline: none !important;
+        border: none !important;
+    }
+    .warningTxt{
+        /* text-align: start !important;  */
+        padding-left: 20px !important;
+    }
+</style>
 @extends('layouts.default')
 
 
@@ -54,11 +69,12 @@
 
         <hr>
 
-        <div class="row">
+        {{-- <div class="row"> --}}
 
             <div class="row">
+                <div class="col-md-3"></div>
 
-                <div class="col-md-12">
+                <div class="col-md-6">
 
                     <!--main content-->
 
@@ -114,9 +130,9 @@
 
                                         <div>
 
-                                            <span class="btn btn-primary btn-file">
+                                            <span class="btn btn-primary btn-file ">
 
-                                                <span class="fileinput-new">Select image</span>
+                                                <span class="fileinput-new ">Select image</span>
 
                                                 <span class="fileinput-exists">Change</span>
 
@@ -136,25 +152,100 @@
 
                             </div>
 
+                              
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->first('first_name', 'has-error') }}">
 
+                                
 
-                            <div class="form-group {{ $errors->first('first_name', 'has-error') }}">
+                                        <div class="col-md-12">
+                                            <label class=" control-label">
+        
+                                                First Name:
+            
+                                                <span class='require'>*</span>
+            
+                                            </label>
+        
+                                            <div class="input-group">
+                                                
+        
+                                            <span class="input-group-addon">
+        
+                                      <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
+        
+                                            </span>
+        
+                                                <input type="text" placeholder=" " name="first_name" id="u-name"
+        
+                                                       class="form-control" value="{!! old('first_name',$user->first_name) !!}">
+        
+                                            </div>
+        
+                                            <span class="help-block">{{ $errors->first('first_name', ':message') }}</span>
+        
+                                        </div>
+        
+        
+        
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->first('last_name', 'has-error') }}">
 
-                                <label class="col-lg-2 control-label">
+                               
 
-                                    First Name:
+                                        <div class="col-md-12">
+                                            <label class=" control-label">
+        
+                                                Last Name:
+            
+                                                <span class='require'>*</span>
+            
+                                            </label>
+        
+                                            <div class="input-group">
+        
+                                                    <span class="input-group-addon">
+        
+                                             <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
+        
+                                                    </span>
+        
+                                                <input type="text" placeholder=" " name="last_name" id="u-name"
+        
+                                                       class="form-control"
+        
+                                                       value="{!! old('last_name',$user->last_name) !!}"></div>
+        
+                                            <span class="help-block">{{ $errors->first('last_name', ':message') }}</span>
+        
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
 
-                                    <span class='require'>*</span>
+                            {{-- <div class="form-group {{ $errors->first('first_name', 'has-error') }}">
 
-                                </label>
+                                
 
                                 <div class="col-lg-6">
+                                    <label class=" control-label">
+
+                                        First Name:
+    
+                                        <span class='require'>*</span>
+    
+                                    </label>
 
                                     <div class="input-group">
+                                        
 
                                     <span class="input-group-addon">
 
-                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
+                              <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
 
                                     </span>
 
@@ -170,27 +261,28 @@
 
 
 
-                            </div>
+                            </div> --}}
 
 
 
-                            <div class="form-group {{ $errors->first('last_name', 'has-error') }}">
+                            {{-- <div class="form-group {{ $errors->first('last_name', 'has-error') }}">
 
-                                <label class="col-lg-2 control-label">
-
-                                    Last Name:
-
-                                    <span class='require'>*</span>
-
-                                </label>
+                               
 
                                 <div class="col-lg-6">
+                                    <label class=" control-label">
+
+                                        Last Name:
+    
+                                        <span class='require'>*</span>
+    
+                                    </label>
 
                                     <div class="input-group">
 
                                             <span class="input-group-addon">
 
-                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
+                                     <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
 
                                             </span>
 
@@ -204,21 +296,22 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
 
 
 
                             <div class="form-group {{ $errors->first('email', 'has-error') }}">
 
-                                <label class="col-lg-2 control-label">
+                             
 
-                                    Email:
+                                <div class="col-md-12">
+                                    <label class=" control-label">
 
-                                    <span class='require'>*</span>
-
-                                </label>
-
-                                <div class="col-lg-6">
+                                        Email:
+    
+                                        <span class='require'>*</span>
+    
+                                    </label>
 
                                     <div class="input-group">
 
@@ -244,17 +337,18 @@
 
                             <div class="form-group {{ $errors->first('password', 'has-error') }}">
 
-                                <p class="text-warning col-md-offset-2"><strong>If you don't want to change password... please leave them empty</strong></p>
+                                <p class="text-warning warningTxt"><strong>If you don't want to change password... please leave them empty</strong></p>
 
-                                <label class="col-lg-2 control-label">
+                                
 
-                                    Password:
+                                <div class="col-md-12">
+                                    <label class=" control-label">
 
-                                    <span class='require'>*</span>
-
-                                </label>
-
-                                <div class="col-lg-6">
+                                        Password:
+    
+                                        <span class='require'>*</span>
+    
+                                    </label>
 
                                     <div class="input-group">
 
@@ -276,15 +370,16 @@
 
                             <div class="form-group {{ $errors->first('password_confirm', 'has-error') }}">
 
-                                <label class="col-lg-2 control-label">
+
+                                <div class="col-md-12">
+                                    
+                                <label class=" control-label">
 
                                     Confirm Password:
 
                                     <span class='require'>*</span>
 
                                 </label>
-
-                                <div class="col-lg-6">
 
                                     <div class="input-group">
 
@@ -306,33 +401,39 @@
 
                             <div class="form-group">
 
-                                <label class="col-lg-2 control-label">Gender: </label>
+                                
 
                                 <div class="col-lg-6">
 
-                                    <div class="radio">
+                                    <label class="control-label">Gender: </label>
+                                    <div class="radioDiv">
+                                        <div class="radio">
 
-                                        <label>
-
-                                            <input type="radio" name="gender" value="male" @if($user->gender === "male") checked="checked" @endif />
-
-                                            Male
-
-                                        </label>
+                                            <label>
+    
+                                                <input type="radio" name="gender" value="male" @if($user->gender === "male") checked="checked" @endif />
+    
+                                                Male
+    
+                                            </label>
+    
+                                        </div>
+    
+                                        <div class="radio">
+    
+                                            <label>
+    
+                                                <input type="radio" name="gender" value="female" @if($user->gender === "female") checked="checked" @endif />
+    
+                                                Female
+    
+                                            </label>
+    
+                                        </div>
 
                                     </div>
 
-                                    <div class="radio">
-
-                                        <label>
-
-                                            <input type="radio" name="gender" value="female" @if($user->gender === "female") checked="checked" @endif />
-
-                                            Female
-
-                                        </label>
-
-                                    </div>
+                                   
 
                                     <!-- <div class="radio">
 
@@ -353,9 +454,9 @@
 
                             <div class="form-group">
 
-                                <div class="col-lg-offset-2 col-lg-10">
+                                <div class="col-lg-12 ">
 
-                                    <button class="btn btn-primary" type="submit">Save</button>
+                                    <button class="btn btn-primary saveBtn" type="submit">Save</button>
 
                                 </div>
 
@@ -368,10 +469,11 @@
                     </div>
 
                 </div>
+                <div class="col-md-3"></div>
 
             </div>
 
-        </div>
+        {{-- </div> --}}
 
     </div>
 
