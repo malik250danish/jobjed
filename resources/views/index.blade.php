@@ -218,6 +218,85 @@ body {
     width: 100%;
     padding-inline: 5rem
 }
+.aboutHead{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* Style the footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style the footer columns */
+.footer-column {
+    flex-basis: calc(33.3333% - 20px);
+    text-align: center;
+}
+
+/* Style the logo */
+.footer-column img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style the links */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffd700;
+}
+.footerlogo{
+    height: 100px !important;
+    width: 100px !important;
+}
+.footerThird{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Add responsive styles */
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-column {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+    .footerThird{
+        margin-top: 50px !important;
+    }
+    .footerThird p {
+        margin-top: 20px;
+    }
+}
+.whyHead{
+    font-weight: bold;
+}
 </style>
 <!--end of page level css-->
 @stop
@@ -244,8 +323,8 @@ body {
 </div>
 <section class="purchas-main">
     <div class="container ">
-        <div class="text-center wow flash" data-wow-duration="3s">
-            <h3 class="border-primary"><span class="heading_border bg-primary">About</span></h3>
+        <div class="text-center my-3 " data-wow-duration="3s">
+            <h3 class="aboutHead "><span class=" border-bottom border-danger ">About</span></h3>
 
         </div>
         <div class="row">
@@ -272,7 +351,7 @@ body {
         <div class="row section-top-space">
             <!-- Responsive Section Start -->
             <div class="text-center">
-                <h3 class="border-primary"><span class="heading_border bg-primary">Why Choose Us</span></h3>
+                <h3 class="whyHead"><span class="border-bottom border-danger  ">Why Choose Us</span></h3>
             </div>
             <div class="col-sm-6 col-md-3 wow bounceInLeft" data-wow-duration="3.5s">
                 <div class="box">
@@ -357,7 +436,7 @@ body {
 <div class="container">
     <div class="row section-top-space">
         <div class="wow flash" data-wow-duration="3s">
-            <h3 class="border-primary text-center "><span class="heading_border bg-primary">Latest CV's</span></h3>
+            <h3 class="text-center whyHead"><span class="border-bottom border-danger ">Latest CV's</span></h3>
             @if(Auth::check())
             <div class="row">
                 <div class="col-md-12">&nbsp;</div>
@@ -501,7 +580,7 @@ body {
         <div class="row" style="clear: both;">
             <div class="col-md-12 text-center">
                 @if(Auth::check())
-                <a href="{{ url('all') }}" class="btn btn-primary text-white">More CV's</a>
+                <a href="{{ url('all') }}" class="btn btn-primary text-white ">More CV's</a>
                 @else
                 <a href="{{ url('/') }}" class="btn btn-primary text-white">More CV's</a>
                 @endif
@@ -522,7 +601,7 @@ body {
     <div class="row section-top-space">
         <!-- Accordions Start -->
         <div class="text-center wow flash" data-wow-duration="3s">
-            <h3 class="border-primary"><span class="heading_border bg-primary">Process Steps</span></h3>
+            <h3 class=" whyHead"><span class=" border-bottom border-danger ">Process Steps</span></h3>
             <label class=" text-center"> Following are the steps for the complete recuritment process.</label>
         </div>
         <!-- Accordions End -->
@@ -716,7 +795,7 @@ body {
 <!-- faq section -->
 <div class="container faqCon">
     <div class="text-center wow flash" data-wow-duration="3s">
-        <h3 class="border-primary"><span class="heading_border bg-primary">FAQs</span></h3>
+        <h3 class=" whyHead"><span class=" border-bottom border-danger ">FAQs</span></h3>
         <label class=" text-center"> Following are the some frequently asked questions.</label>
     </div>
     <div id="accordion" class="py-5">
@@ -810,6 +889,37 @@ body {
     </div>
 
 </div>
+
+{{-- footer content by ikram  --}}
+
+<div class="">
+     
+        
+<footer class="footer">
+    <div class="footer-column">
+        <img class="footerlogo" src="{{ asset('assets/images/logo.png') }}" alt="slider-image">
+    </div>
+    <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div class="footer-column footerThird">
+        <h3>Contact Us</h3>
+        <p>123 Main St, City</p>
+        <p>Email: example@example.com</p>
+        <p>Phone: +1 (123) 456-7890</p>
+    </div>
+</footer>
+    
+</div>
+
+{{-- footer content by ikram  --}}
+
 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}" />
 @stop
 
