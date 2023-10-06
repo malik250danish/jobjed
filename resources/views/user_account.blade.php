@@ -12,6 +12,14 @@
         /* text-align: start !important;  */
         padding-left: 20px !important;
     }
+    .selectimgBtn{
+             background-color: #01BC8C;
+             color: #fff;
+    }
+    .selectimgBtn:hover {
+             background-color: #01BC8C;
+             /* color: #fff !important; */
+    }
 </style>
 @extends('layouts.default')
 
@@ -130,7 +138,7 @@
 
                                         <div>
 
-                                            <span class="btn btn-primary btn-file ">
+                                            <span class="btn selectimgBtn btn-file ">
 
                                                 <span class="fileinput-new ">Select image</span>
 

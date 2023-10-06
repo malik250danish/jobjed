@@ -177,6 +177,9 @@ body {
     width: 100%;
     height: auto;
 }
+.navbar{
+    background-color: #01BC8C !important;
+}
 
 @media (max-width: 576px) {
     .custom-width {
@@ -237,7 +240,12 @@ body {
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
+    background-color: #01BC8C;
+    /* background-repeat: no-repeat; */
+    /* background-size:cover; */
+    /* height: 500px;  */
     justify-content: space-between;
+    /* background: url('./images/footer3.jpg'); */
 }
 
 /* Style the footer columns */
@@ -308,6 +316,18 @@ body {
 
 .whyHead {
     font-weight: bold;
+}
+.box{
+    border-top: 0px !important;
+}
+.cvCard {
+    margin-top: 20px !important;
+}
+.moreBtn{
+    margin-top: 20px !important;
+}
+.processIndex{
+    z-index: 1;
 }
 </style>
 <!--end of page level css-->
@@ -720,7 +740,7 @@ body {
 
                     @endforeach
                 </div>
-                <div class="row" style="clear: both;">
+                <div class="row moreBtn" style="clear: both;">
                     <div class="col-md-12 text-center">
                         @if(Auth::check())
                         <a href="{{ url('all') }}" class="btn btn-success text-white ">More CV's</a>
@@ -830,15 +850,14 @@ body {
 </div>
 <div class="container">
 
-
-    <div class="row section-top-space">
+    <div class="row section-top-space processIndex">
         <!-- Accordions Start -->
         <div class="text-center wow flash" data-wow-duration="3s">
             <h3 class=" whyHead"><span class=" border-bottom border-danger ">Process Steps</span></h3>
             <label class=" text-center"> Following are the steps for the complete recuritment process.</label>
         </div>
         <!-- Accordions End -->
-        <div class="col-md-12 col-sm-12 wow slideInLeft" data-wow-duration="1.5s">
+        <div class="col-md-12 col-sm-12 wow slideInLeft processIndex" data-wow-duration="1.5s">
 
             <ul class="timeline">
 
