@@ -36,7 +36,7 @@ body {
 }
 
 .border-bottom {
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid #01BC8C;
 }
 
 .border-left {
@@ -214,9 +214,100 @@ body {
     }
 }
 
+
+#bar {
+    display: none
+}
+
 .viewBTn {
     width: 100%;
     padding-inline: 5rem
+}
+
+.aboutHead {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* Style the footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style the footer columns */
+.footer-column {
+    flex-basis: calc(33.3333% - 20px);
+    text-align: center;
+}
+
+/* Style the logo */
+.footer-column img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style the links */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffd700;
+}
+
+.footerlogo {
+    height: 100px !important;
+    width: 100px !important;
+}
+
+.footerThird {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Add responsive styles */
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-column {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footerThird {
+        margin-top: 50px !important;
+    }
+
+    .footerThird p {
+        margin-top: 20px;
+    }
+}
+
+.whyHead {
+    font-weight: bold;
 }
 </style>
 <!--end of page level css-->
@@ -237,15 +328,11 @@ body {
 
 {{-- content --}}
 @section('content')
-<div class="container-fluid">
-    <div class="banner">
-        <h2 class="fw-bolder">Upload Your Resume And Get <span class="text-success">Hired</span></h2>
-    </div>
-</div>
+
 <section class="purchas-main">
     <div class="container ">
-        <div class="text-center wow flash" data-wow-duration="3s">
-            <h3 class="border-primary"><span class="heading_border bg-primary">About</span></h3>
+        <div class="text-center my-3 " data-wow-duration="3s">
+            <h3 class="aboutHead "><span class=" border-bottom border-danger ">About</span></h3>
 
         </div>
         <div class="row">
@@ -268,11 +355,390 @@ body {
                 <img class="imgAbout" src="./assets/images/about.jpeg" alt="">
             </div>
         </div>
+
+        <div class="container">
+            <div class="row section-top-space">
+                <div class="wow flash" data-wow-duration="3s">
+                    <h3 class="text-center whyHead"><span class="border-bottom border-danger ">Latest CV's</span></h3>
+                    @if(Auth::check())
+                    <div class="row">
+                        <div class="col-md-12">&nbsp;</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">&nbsp;</div>
+                    </div>
+                    <div class="row margin-remove sBox">
+                        <div class="col-md-2">
+                            <strong class="pl-10">Country</strong>
+                            <select class="form-control" id="country">
+                                <option value="0">All</option>
+                                @foreach($activeCountries as $res)
+                                <option value="{{ $res->id }}">{{ $res->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <strong class="pl-10">Occupation</strong>
+                            <select class="form-control" id="occupation">
+                                <option value="0">All</option>
+                                @foreach($activeOcuupations as $res)
+                                <option value="{{ $res->id }}">{{ $res->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <strong class="pl-10">Age</strong>
+                            <select class="form-control" id="age">
+                                @foreach(\App\Models\User::$agelimit as $key => $val)
+                                <option value="{{ $key }}">{{ $val }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <strong class="pl-10">Religion</strong>
+                            <select class="form-control" id="religion">
+                                <option value="0">All</option>
+                                <option value="1">Muslim</option>
+                                <option value="2">Non Muslim</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <strong class="pl-10">&nbsp;</strong>
+                            <button class="btn btn-default round form-control"
+                                onClick="return get_cvs()">Search</button>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row margin-remove">
+                    <div class="col-md-12">
+                        <h5>Please select your required CV</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="card  cvCard ">
+                            <div class="row px-2">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="imgDiv ">
+                                        <img class="cvImg" src="./assets/images/c2.jpg" alt="cv image">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="headerText text-success ">SA 0954</div>
+                                    <div class="">
+                                        <p>Name: Mark</p>
+                                        <p>Agw: 30</p>
+                                        <p>Religion:Christian</p>
+                                        <p>Country: USA</p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn w-100 btn-success btnView"><i class="fas fa-eye"></i> View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vestibulizzle Section Start -->
+                <div id="cvs">
+                    @php
+                    $number = 1;
+                    @endphp
+                    @foreach($results as $result)
+                    @php
+                    $number++;
+                    @endphp
+                    <div class="custom-width">
+
+                        <div class="panel panel-default text-center">
+
+                            <div class="panel-header">
+
+                                <span style="font-size: 24px;">SA {{ sprintf('%04d',$result->id) }}</span>
+                                <!-- <span class="text-white" style="font-size: 24px;">{{ ucfirst($result->occupation->name) }}</span> -->
+
+                            </div>
+
+                            <div class="panel-body text-start">
+
+                                <div>
+
+                                    @if($result->pic != null)
+                                    <img src="{{ url('uploads/profile/'.$result->pic) }}" alt="100x100"
+                                        class="cv-img img-responsive rounded-circle">
+                                    @else
+                                    <img src="{{ asset('assets/images/not_found.png') }}" alt="team-image"
+                                        class="img-responsive cv-img">
+                                    @endif
+
+                                </div>
+
+                                <h5 class="success text-white" style="text-align:start;">
+                                    {{ substr_replace($result->name, "...", 15) }}</h5>
+
+                                <div style="display: flex;justify-content: start; padding:16px 0px">
+
+                                    <ul class="text-left pl-0 text-white">
+
+                                        <li>Age: {{ $result->age }}</li>
+
+                                        <li>
+                                            Country:
+                                            @if(!is_null($result->national_country_id))
+                                            {{ \App\Models\Country::find($result->national_country_id)->name }}
+                                            @else
+                                            &nbsp;
+                                            @endif
+                                        </li>
+
+                                        <li>Religion: {{ \App\Models\User::$religion[$result->religion] }}</li>
+
+                                        <!-- <li>{{ $result->previouswork }}</li> -->
+
+                                    </ul>
+
+                                </div>
+                                @if($result->connect && $result->connect->status == 0)
+                                <span class="tab bg-red">Processing</span>
+                                @elseif($result->connect && $result->connect->status == 1)
+                                <span class="tab bg-green">Accepted</span>
+                                @else
+
+                                <a href="{{ url('detail/'.base64_encode($result->id)) }}" target="_blank"
+                                    class="tab bg-white viewBTn"><i class="fas fa-eye"></i> View</a>
+
+                                @endif
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    @endforeach
+                </div>
+                <div class="row" style="clear: both;">
+                    <div class="col-md-12 text-center">
+                        @if(Auth::check())
+                        <a href="{{ url('all') }}" class="btn btn-success text-white ">More CV's</a>
+                        @else
+                        <a href="{{ url('/') }}" class="btn btn-success text-white">More CV's</a>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
         <!-- Service Section Start-->
         <div class="row section-top-space">
             <!-- Responsive Section Start -->
             <div class="text-center">
-                <h3 class="border-primary"><span class="heading_border bg-primary">Why Choose Us</span></h3>
+                <h3 class="whyHead"><span class="border-bottom border-danger  ">Why Choose Us</span></h3>
             </div>
             <div class="col-sm-6 col-md-3 wow bounceInLeft" data-wow-duration="3.5s">
                 <div class="box">
@@ -354,164 +820,8 @@ body {
     </div>
 </section>
 
-<div class="container">
-    <div class="row section-top-space">
-        <div class="wow flash" data-wow-duration="3s">
-            <h3 class="border-primary text-center "><span class="heading_border bg-primary">Latest CV's</span></h3>
-            @if(Auth::check())
-            <div class="row">
-                <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row margin-remove">
-                <div class="col-md-2">
-                    <strong class="pl-10">Country</strong>
-                    <select class="form-control" id="country">
-                        <option value="0">All</option>
-                        @foreach($activeCountries as $res)
-                        <option value="{{ $res->id }}">{{ $res->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <strong class="pl-10">Occupation</strong>
-                    <select class="form-control" id="occupation">
-                        <option value="0">All</option>
-                        @foreach($activeOcuupations as $res)
-                        <option value="{{ $res->id }}">{{ $res->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <strong class="pl-10">Age</strong>
-                    <select class="form-control" id="age">
-                        @foreach(\App\Models\User::$agelimit as $key => $val)
-                        <option value="{{ $key }}">{{ $val }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <strong class="pl-10">Religion</strong>
-                    <select class="form-control" id="religion">
-                        <option value="0">All</option>
-                        <option value="1">Muslim</option>
-                        <option value="2">Non Muslim</option>
-                    </select>
-                </div>
-                <div class="col-md-1">
-                    <strong class="pl-10">&nbsp;</strong>
-                    <button class="btn btn-default round form-control" onClick="return get_cvs()">Search</button>
-                </div>
-            </div>
-            @endif
-        </div>
-        <div class="row">
-            <div class="col-md-12">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">&nbsp;</div>
-        </div>
-        <div class="row margin-remove">
-            <div class="col-md-12">
-                <h5>Please select your required CV</h5>
-            </div>
-        </div>
-        <!-- Vestibulizzle Section Start -->
-        <div id="cvs">
-            @php
-            $number = 1;
-            @endphp
-            @foreach($results as $result)
-            @php
-            $number++;
-            @endphp
-            <div class="custom-width">
-
-                <div class="panel panel-default text-center">
-
-                    <div class="panel-header">
-
-                        <span style="font-size: 24px;">SA {{ sprintf('%04d',$result->id) }}</span>
-                        <!-- <span class="text-white" style="font-size: 24px;">{{ ucfirst($result->occupation->name) }}</span> -->
-
-                    </div>
-
-                    <div class="panel-body text-start">
-
-                        <div>
-
-                            @if($result->pic != null)
-                            <img src="{{ url('uploads/profile/'.$result->pic) }}" alt="100x100"
-                                class="cv-img img-responsive rounded-circle">
-                            @else
-                            <img src="{{ asset('assets/images/not_found.png') }}" alt="team-image"
-                                class="img-responsive cv-img">
-                            @endif
-
-                        </div>
-
-                        <h5 class="success text-white" style="text-align:start;">
-                            {{ substr_replace($result->name, "...", 15) }}</h5>
-
-                        <div style="display: flex;justify-content: start; padding:16px 0px">
-
-                            <ul class="text-left pl-0 text-white">
-
-                                <li>Age: {{ $result->age }}</li>
-
-                                <li>
-                                    Country:
-                                    @if(!is_null($result->national_country_id))
-                                    {{ \App\Models\Country::find($result->national_country_id)->name }}
-                                    @else
-                                    &nbsp;
-                                    @endif
-                                </li>
-
-                                <li>Religion: {{ \App\Models\User::$religion[$result->religion] }}</li>
-
-                                <!-- <li>{{ $result->previouswork }}</li> -->
-
-                            </ul>
-
-                        </div>
-                        @if($result->connect && $result->connect->status == 0)
-                        <span class="tab bg-red">Processing</span>
-                        @elseif($result->connect && $result->connect->status == 1)
-                        <span class="tab bg-green">Accepted</span>
-                        @else
-
-                        <a href="{{ url('detail/'.base64_encode($result->id)) }}" target="_blank"
-                            class="tab bg-white viewBTn"><i class="fas fa-eye"></i> View</a>
-
-                        @endif
 
 
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            @endforeach
-        </div>
-        <div class="row" style="clear: both;">
-            <div class="col-md-12 text-center">
-                @if(Auth::check())
-                <a href="{{ url('all') }}" class="btn btn-primary text-white">More CV's</a>
-                @else
-                <a href="{{ url('/') }}" class="btn btn-primary text-white">More CV's</a>
-                @endif
-
-            </div>
-        </div>
-    </div>
-
-
-</div>
 <div class="container-fluid bgCon">
     <div class="Create">
         <h2>WE ARE HIRING!</h2>
@@ -519,10 +829,12 @@ body {
     </div>
 </div>
 <div class="container">
+
+
     <div class="row section-top-space">
         <!-- Accordions Start -->
         <div class="text-center wow flash" data-wow-duration="3s">
-            <h3 class="border-primary"><span class="heading_border bg-primary">Process Steps</span></h3>
+            <h3 class=" whyHead"><span class=" border-bottom border-danger ">Process Steps</span></h3>
             <label class=" text-center"> Following are the steps for the complete recuritment process.</label>
         </div>
         <!-- Accordions End -->
@@ -716,14 +1028,14 @@ body {
 <!-- faq section -->
 <div class="container faqCon">
     <div class="text-center wow flash" data-wow-duration="3s">
-        <h3 class="border-primary"><span class="heading_border bg-primary">FAQs</span></h3>
+        <h3 class=" whyHead"><span class=" border-bottom border-danger ">FAQs</span></h3>
         <label class=" text-center"> Following are the some frequently asked questions.</label>
     </div>
     <div id="accordion" class="py-5">
 
 
         <div class="card border-0 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-            <div class="card-header p-0 border-0 bg-primary text-white" id="heading-241">
+            <div class="card-header p-0 border-0 bg-success text-white" id="heading-241">
                 <button class="btn btn-link accordion-title border-0 collapsed w-100 text-white" data-toggle="collapse"
                     data-target="#collapse-241" aria-expanded="false" aria-controls="#collapse-241"><i
                         class="fas fa-minus   h-100 iconP"></i>How
@@ -740,7 +1052,7 @@ body {
             </div>
         </div>
         <div class="card border-0 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-            <div class="card-header p-0 border-0 bg-primary" id="heading-242">
+            <div class="card-header p-0 border-0 bg-success" id="heading-242">
                 <button class="btn btn-link accordion-title border-0 collapsed w-100 text-white" data-toggle="collapse"
                     data-target="#collapse-242" aria-expanded="false" aria-controls="#collapse-242"><i
                         class="fas fa-minus text-center d-flex align-items-center justify-content-center h-100 iconP"></i>How
@@ -757,7 +1069,7 @@ body {
             </div>
         </div>
         <div class="card border-0 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-            <div class="card-header p-0 border-0 bg-primary" id="heading-243">
+            <div class="card-header p-0 border-0 bg-success" id="heading-243">
                 <button class="btn btn-link accordion-title border-0 collapsed w-100 text-white" data-toggle="collapse"
                     data-target="#collapse-243" aria-expanded="false" aria-controls="#collapse-243"><i
                         class="fas fa-minus text-center d-flex align-items-center justify-content-center h-100 iconP"></i>What
@@ -774,7 +1086,7 @@ body {
             </div>
         </div>
         <div class="card border-0 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-            <div class="card-header p-0 border-0 bg-primary" id="heading-244">
+            <div class="card-header p-0 border-0 bg-success" id="heading-244">
                 <button class="btn btn-link accordion-title border-0 collapsed w-100 text-white" data-toggle="collapse"
                     data-target="#collapse-244" aria-expanded="false" aria-controls="#collapse-244"><i
                         class="fas fa-minus text-center d-flex align-items-center justify-content-center h-100 iconP"></i>Do
@@ -791,7 +1103,7 @@ body {
             </div>
         </div>
         <div class="card border-0 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-            <div class="card-header p-0 border-0 bg-primary" id="heading-245">
+            <div class="card-header p-0 border-0 bg-success" id="heading-245">
                 <button class="btn btn-link accordion-title border-0 collapsed w-100 text-white" data-toggle="collapse"
                     data-target="#collapse-245" aria-expanded="false" aria-controls="#collapse-245"><i
                         class="fas fa-minus text-center d-flex align-items-center justify-content-center h-100 iconP"></i>How
@@ -810,6 +1122,37 @@ body {
     </div>
 
 </div>
+
+{{-- footer content by ikram  --}}
+
+<div class="">
+
+
+    <footer class="footer">
+        <div class="footer-column">
+            <img class="footerlogo" src="{{ asset('assets/images/logo.png') }}" alt="slider-image">
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column footerThird">
+            <h3>Contact Us</h3>
+            <p>123 Main St, City</p>
+            <p>Email: example@example.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+        </div>
+    </footer>
+
+</div>
+
+{{-- footer content by ikram  --}}
+
 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}" />
 @stop
 

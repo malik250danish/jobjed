@@ -12,7 +12,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <title>
-    	@section('title')
+        @section('title')
         | {{ env('APP_NAME') }}
         @show
     </title>
@@ -21,21 +21,26 @@
     <!--end of global css-->
     <!--page level css-->
     <style>
-        .navbar{
-            min-height: 110px;
-        }
-        .navbar ul{
-            margin-top: 40px
-        }
-        .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
-            color: #fff;
-            border-radius: 60px;
-            background-color: rgb(22, 133, 199);
-        }
-        .navbar-nav>li>a {
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
+    .navbar {
+        min-height: 110px;
+    }
+
+    .navbar ul {
+        margin-top: 40px
+    }
+
+    .navbar-default .navbar-nav>.active>a,
+    .navbar-default .navbar-nav>.active>a:focus,
+    .navbar-default .navbar-nav>.active>a:hover {
+        color: #fff;
+        border-radius: 6px;
+        background-color: #01BC8C;
+    }
+
+    .navbar-nav>li>a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
     </style>
     @yield('header_styles')
     <!--end of page level css-->
@@ -88,15 +93,17 @@
         <nav class="navbar navbar-default container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
-                    <span><a href="#">_<i class="livicon" data-name="responsive-menu" data-size="25" data-loop="true" data-c="#757b87" data-hc="#ccc"></i>
-                    </a></span>
+                    <span><a href="#">_<i class="livicon" data-name="responsive-menu" data-size="25" data-loop="true"
+                                data-c="#757b87" data-hc="#ccc"></i>
+                        </a></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="logo_position">
+                <a class="navbar-brand" href="{{ url('home') }}"><img src="{{ asset('assets/images/logo.png') }}"
+                        alt="logo" class="logo_position">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li {!! (Request::is('/') ? 'class="active"' : '') !!}><a href="{{ url('/') }}"> Home</a></li>
+                    <li {!! (Request::is('/') ? 'class="active"' : '' ) !!}><a href="{{ url('/') }}"> Home</a></li>
                     <!-- <li {!! (Request::is('/custom-form') ? 'class="active"' : '') !!}><a href="{{ url('custom-form') }}"> Custom Form</a></li>
                     <li class="dropdown {!! (Request::is('typography') || Request::is('advancedfeatures') || Request::is('grid') ? 'active' : '') !!}"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> Features</a>
                         <ul class="dropdown-menu" role="menu">
@@ -158,15 +165,16 @@
                     </li> -->
                     {{--based on anyone login or not display menu items--}}
                     @if(Auth::check())
-                        @if(Auth::getuser()->role_id != 3)
-                            <li><a href="{{ url('admin') }}">Dashoard</a></li>
-                        @endif
-                        <li {{ (Request::is('my-account') ? 'class=active' : '') }}><a href="{{ URL::to('my-account') }}">My Account</a></li>
-                        <li><a href="{{ URL::to('logout') }}">Logout</a></li>
+                    @if(Auth::getuser()->role_id != 3)
+                    <li><a href="{{ url('admin') }}">Dashoard</a></li>
+                    @endif
+                    <li {{ (Request::is('my-account') ? 'class=active' : '') }}><a href="{{ URL::to('my-account') }}">My
+                            Account</a></li>
+                    <li><a href="{{ URL::to('logout') }}">Logout</a></li>
 
                     @else
-                        <li><a href="{{ URL::to('/') }}">Login</a></li>
-                        <li><a href="{{ URL::to('/') }}">Register</a></li>
+                    <li><a href="{{ URL::to('/') }}">Login</a></li>
+                    <li><a href="{{ URL::to('/') }}">Register</a></li>
                     @endif
 
                 </ul>
@@ -295,10 +303,11 @@
     <!-- //Footer Section End -->
     <div class="copyright">
         <div class="container">
-        <p>Copyright &copy; {{ env('APP_NAME') }}, 2022</p>
+            <p>Copyright &copy; {{ env('APP_NAME') }}, 2022</p>
         </div>
     </div>
-    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top" data-toggle="tooltip" data-placement="left">
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top"
+        data-toggle="tooltip" data-placement="left">
         <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
     </a>
     <!--global js starts-->
