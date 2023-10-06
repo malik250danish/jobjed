@@ -1,4 +1,27 @@
 <style>
+
+    .radioDiv{
+        display: flex;
+
+    }
+    .saveBtn{
+        width: 100% !important;
+        outline: none !important;
+        border: none !important;
+    }
+    .warningTxt{
+        /* text-align: start !important;  */
+        padding-left: 20px !important;
+    }
+    .selectimgBtn{
+             background-color: #01BC8C;
+             color: #fff;
+    }
+    .selectimgBtn:hover {
+             background-color: #01BC8C;
+             /* color: #fff !important; */
+    }
+
 .radioDiv {
     display: flex;
 
@@ -14,6 +37,7 @@
     /* text-align: start !important;  */
     padding-left: 20px !important;
 }
+
 </style>
 @extends('layouts.default')
 
@@ -174,7 +198,11 @@ User Account
 
                                         </label>
 
+
+                                            <span class="btn selectimgBtn btn-file ">
+
                                         <div class="input-group">
+
 
 
                                             <span class="input-group-addon">

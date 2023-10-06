@@ -23,6 +23,7 @@
     <style>
     .navbar {
         min-height: 110px;
+        background-color: #01BC8C !important;
     }
 
     .navbar ul {
@@ -36,10 +37,19 @@
         border-radius: 6px;
         background-color: #01BC8C;
     }
+    .copyright{
+        background-color: #01BC8C !important;
+    }
 
     .navbar-nav>li>a {
         padding-top: 5px;
         padding-bottom: 5px;
+    }
+    .dashHover:hover{
+        color: #ffd700 !important;
+    }
+    .dashHover{
+        color: #fff !important;
     }
     </style>
     @yield('header_styles')
@@ -103,7 +113,7 @@
             </div>
             <div class="collapse navbar-collapse" id="collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li {!! (Request::is('/') ? 'class="active"' : '' ) !!}><a href="{{ url('/') }}"> Home</a></li>
+                    <li {!! (Request::is('/') ? 'class="active"' : '' ) !!}><a class="dashHover" href="{{ url('/') }}"> Home</a></li>
                     <!-- <li {!! (Request::is('/custom-form') ? 'class="active"' : '') !!}><a href="{{ url('custom-form') }}"> Custom Form</a></li>
                     <li class="dropdown {!! (Request::is('typography') || Request::is('advancedfeatures') || Request::is('grid') ? 'active' : '') !!}"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> Features</a>
                         <ul class="dropdown-menu" role="menu">
@@ -166,11 +176,11 @@
                     {{--based on anyone login or not display menu items--}}
                     @if(Auth::check())
                     @if(Auth::getuser()->role_id != 3)
-                    <li><a href="{{ url('admin') }}">Dashoard</a></li>
+                    <li><a class="dashHover" href="{{ url('admin') }}">Dashoard</a></li>
                     @endif
-                    <li {{ (Request::is('my-account') ? 'class=active' : '') }}><a href="{{ URL::to('my-account') }}">My
+                    <li {{ (Request::is('my-account') ? 'class=active' : '') }}><a class="dashHover" href="{{ URL::to('my-account') }}">My
                             Account</a></li>
-                    <li><a href="{{ URL::to('logout') }}">Logout</a></li>
+                    <li><a class="dashHover" href="{{ URL::to('logout') }}">Logout</a></li>
 
                     @else
                     <li><a href="{{ URL::to('/') }}">Login</a></li>
@@ -302,8 +312,8 @@
     </footer> -->
     <!-- //Footer Section End -->
     <div class="copyright">
-        <div class="container">
-            <p>Copyright &copy; {{ env('APP_NAME') }}, 2022</p>
+        <div class="container  ">
+            <p class="text-center" >Copyright &copy; {{ env('APP_NAME') }}, 2022</p>
         </div>
     </div>
     <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top"
