@@ -13,6 +13,8 @@
         padding-left: 20px !important;
     }
 </style>
+
+
 @extends('layouts.default')
 
 
